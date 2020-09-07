@@ -27,7 +27,7 @@
         <div id="counter">
           <form id="tweet-form">
             <div class="form-text">
-              <input name="text" id="form-text" maxlength="100" />をします！
+              <input name="text" id="form-text" maxlength="150" />をします！
             </div>
             <div class="center">
               <button type="submit" class="button">Twitterで宣言する</button>
@@ -36,7 +36,9 @@
         </div>
         <!-- 締め切り後 -->
         <div id="limited" style="display: none">
-          <div>締め切りを過ぎてしまった……が、まだ間に合う！</div>
+          <div>
+            締め切りを過ぎてしまいました……。<br />が、まだ間に合うはず！
+          </div>
         </div>
         <div class="center">
           <a href="https://crieit.net/boards/web1week-202009" target="_blank">
@@ -52,7 +54,6 @@
       function limitSecond() {
         var now = new Date();
         const limit = new Date("2020/9/14 0:00:00+0900");
-        // const limit = new Date("2020/9/4 0:00:00+0900");
         var diff = Math.floor((limit - now) / 1000);
         return diff;
       }
@@ -74,9 +75,9 @@
       }
       function rewriteSecondMessage() {
         const messageZone = document.getElementById("message");
-        messageZone.innerHTML = `締め切りから<span id='second' >${locale(
+        messageZone.innerHTML = `締め切りから<br><span id='second' >${locale(
           limitSecond()
-        )}</span>秒後`;
+        )}</span>秒経ちました`;
       }
       function showLimited() {
         document.getElementById("counter").style.display = "none";
@@ -92,8 +93,9 @@
         tweet(text);
       });
       function tweetUrl(text) {
-        const url = "https://";
+        const url = "https://aiandrox.github.io/web1week_limit/";
         const tweetUrl = `https://twitter.com/intent/tweet?hashtags=web1weekタイムリミット,web1week&url=${url}&text=あと${limitSecond()}秒で${text}をします！`;
+        return tweetUrl;
       }
       function tweet(text) {
         window.location.href = tweetUrl(text);
