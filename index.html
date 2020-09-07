@@ -4,14 +4,18 @@
     <link rel="stylesheet" href="ress.css" />
     <link rel="stylesheet" href="css.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>web1weekタイムリミット</title>
+    <title>web1weekカウントダウン</title>
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@aiandrox" />
     <meta
       property="og:url"
       content="https://aiandrox.github.io/web1week_limit/"
     />
-    <meta property="og:title" content="web1weekタイムリミット" />
+    <meta
+      name="twitter:description"
+      content="web1weekの締め切りまでのタイムリミットを教えてくれます。"
+    />
+    <meta property="og:title" content="web1weekカウントダウン" />
   </head>
   <body>
     <div id="app">
@@ -94,7 +98,7 @@
       });
       function tweetUrl(text) {
         const url = "https://aiandrox.github.io/web1week_limit/";
-        const tweetUrl = `https://twitter.com/intent/tweet?hashtags=web1weekタイムリミット,web1week&url=${url}&text=あと${limitSecond()}秒で${text}をします！`;
+        const tweetUrl = `https://twitter.com/intent/tweet?hashtags=web1weekカウントダウン,web1week&url=${url}&text=あと${limitSecond()}秒で${text}をします！`;
         return tweetUrl;
       }
       function tweet(text) {
