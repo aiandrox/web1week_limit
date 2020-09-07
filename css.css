@@ -1,0 +1,71 @@
+/* 基本 */
+#app {
+  font-size: 2vw;
+  max-width: 100%;
+  width: 600px;
+  margin: 20px auto;
+  padding: 2rem;
+}
+
+@media (max-width: 767px) {
+  #app {
+    font-size: 3vh;
+    width: 100%;
+    margin: 20px 0;
+  }
+  #main {
+    padding: 10px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #6292ad;
+}
+a:hover {
+  text-decoration: underline;
+  color: #476a80;
+}
+
+.center {
+  text-align: center;
+}
+
+/* カウントダウン */
+.web1week {
+  font-size: 3rem;
+}
+#second {
+  font-size: 3rem;
+}
+
+/* 入力フォーム */
+input {
+  display: inline-block;
+  padding: 0.3em 0.5rem;
+  /* color: #fff; */
+  background-color: #fff;
+  border: 2px #6292ad solid;
+  border-radius: 0.5rem;
+  margin: 2px;
+}
+input:focus {
+  border: 2px solid #476a80;
+  outline: none;
+}
+
+/* ボタン */
+.button {
+  display: inline-block;
+  padding: 0.3em 1.5em;
+  color: #fff;
+  background-color: #6292ad;
+  border: 2px #6292ad solid;
+  border-radius: 0.5rem;
+  margin: 2px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #476a80;
+  border: 2px #476a80 solid;
+}

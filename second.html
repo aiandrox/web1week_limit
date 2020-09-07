@@ -1,0 +1,92 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="ress.css" />
+    <link rel="stylesheet" href="css.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web1weekタイムリミット</title>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@aiandrox" />
+    <meta
+      property="og:url"
+      content="https://aiandrox.github.io/web1week_limit/"
+    />
+    <meta property="og:title" content="web1weekタイムリミット" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="counter">
+        <div class="center">
+          <div class="web1week">web1week</div>
+          締め切りまで<br />
+          あと<span id="second"></span>秒
+        </div>
+        <div>
+          <form id="tweet-form">
+            <div class="form-text">
+              <input name="text" id="form-text" maxlength="100" />をします！
+            </div>
+            <div class="center">
+              <button type="submit" class="button">Twitterで宣言する</button>
+            </div>
+          </form>
+        </div>
+        <a href="https://crieit.net/boards/web1week-202009" target="_blank">
+          提出する
+        </a>
+      </div>
+      <div id="limited" style="display: none">
+        <div class="center">
+          <div class="web1week">web1week</div>
+          締め切りから<br />
+          <span id="second"></span>秒経ちました
+        </div>
+        <div>時刻を過ぎてしまった……が、まだ間に合う！</div>
+
+        <a href="https://crieit.net/boards/web1week-202009" target="_blank"
+          >提出する</a
+        >
+      </div>
+    </div>
+
+    <script>
+      "use strict";
+      // 時間表示
+      setInterval("setLimitSecond()", 500);
+      var secondZone = document.getElementById("second");
+      function setLimitSecond() {
+        secondZone.innerHTML = locale(limitSecond());
+        if (limitSecond() > 0) return;
+        showLimited();
+      }
+      function locale(num) {
+        const abs = Math.abs(num);
+        return abs.toLocaleString();
+      }
+      function limitSecond() {
+        var now = new Date();
+        // const limit = new Date("2020/9/14 0:00:00+0900");
+        const limit = new Date("2020/9/4 0:00:00+0900");
+        var diff = Math.floor((limit - now) / 1000);
+        return diff;
+      }
+      function showLimited() {
+        document.getElementById("counter").style.display = "none";
+        document.getElementById("limited").style.display = "block";
+      }
+      // Tweet
+      const tweetForm = document.getElementById("tweet-form");
+      tweetForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const text = document.getElementById("form-text").value;
+        if (text === "") return alert("宣言内容を入力してください");
+        tweet(text);
+      });
+      function tweet(text) {
+        const url = "https://";
+        const tweetUrl = `https://twitter.com/intent/tweet?hashtags=web1weekタイムリミット,web1week&url=${url}&text=あと${limitSecond()}秒で${text}をします！`;
+        window.location.href = tweetUrl;
+      }
+    </script>
+  </body>
+</html>
