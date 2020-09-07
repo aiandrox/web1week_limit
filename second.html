@@ -15,13 +15,16 @@
   </head>
   <body>
     <div id="app">
-      <div id="counter">
+      <div>
         <div class="center">
           <div class="web1week">web1week</div>
-          締め切りまで<br />
-          あと<span id="second"></span>秒
+          <div id="message">
+            締め切りまで<br />
+            あと<span id="second"></span>秒
+          </div>
         </div>
-        <div>
+        <!-- 締め切り前 -->
+        <div id="counter">
           <form id="tweet-form">
             <div class="form-text">
               <input name="text" id="form-text" maxlength="100" />をします！
@@ -31,44 +34,49 @@
             </div>
           </form>
         </div>
-        <a href="https://crieit.net/boards/web1week-202009" target="_blank">
-          提出する
-        </a>
-      </div>
-      <div id="limited" style="display: none">
-        <div class="center">
-          <div class="web1week">web1week</div>
-          締め切りから<br />
-          <span id="second"></span>秒経ちました
+        <!-- 締め切り後 -->
+        <div id="limited" style="display: none">
+          <div>締め切りを過ぎてしまった……が、まだ間に合う！</div>
         </div>
-        <div>時刻を過ぎてしまった……が、まだ間に合う！</div>
-
-        <a href="https://crieit.net/boards/web1week-202009" target="_blank"
-          >提出する</a
-        >
+        <div class="center">
+          <a href="https://crieit.net/boards/web1week-202009" target="_blank">
+            提出する
+          </a>
+        </div>
       </div>
     </div>
 
     <script>
       "use strict";
-      // 時間表示
-      setInterval("setLimitSecond()", 500);
-      var secondZone = document.getElementById("second");
-      function setLimitSecond() {
-        secondZone.innerHTML = locale(limitSecond());
-        if (limitSecond() > 0) return;
-        showLimited();
-      }
-      function locale(num) {
-        const abs = Math.abs(num);
-        return abs.toLocaleString();
-      }
+      // 時間に関して
       function limitSecond() {
         var now = new Date();
         // const limit = new Date("2020/9/14 0:00:00+0900");
         const limit = new Date("2020/9/4 0:00:00+0900");
         var diff = Math.floor((limit - now) / 1000);
         return diff;
+      }
+      function isInTime() {
+        return limitSecond() > 0;
+      }
+      function locale(num) {
+        const abs = Math.abs(num);
+        return abs.toLocaleString();
+      }
+      // 表示に関して
+      setInterval("setLimitSecond()", 500);
+      const secondZone = document.getElementById("second");
+      function setLimitSecond() {
+        secondZone.innerHTML = locale(limitSecond());
+        if (isInTime()) return;
+        rewriteSecondMessage();
+        showLimited();
+      }
+      function rewriteSecondMessage() {
+        const messageZone = document.getElementById("message");
+        messageZone.innerHTML = `締め切りから<span id='second' >${locale(
+          limitSecond()
+        )}</span>秒後`;
       }
       function showLimited() {
         document.getElementById("counter").style.display = "none";
@@ -80,12 +88,15 @@
         e.preventDefault();
         const text = document.getElementById("form-text").value;
         if (text === "") return alert("宣言内容を入力してください");
+
         tweet(text);
       });
-      function tweet(text) {
+      function tweetUrl(text) {
         const url = "https://";
         const tweetUrl = `https://twitter.com/intent/tweet?hashtags=web1weekタイムリミット,web1week&url=${url}&text=あと${limitSecond()}秒で${text}をします！`;
-        window.location.href = tweetUrl;
+      }
+      function tweet(text) {
+        window.location.href = tweetUrl(text);
       }
     </script>
   </body>
