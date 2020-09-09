@@ -5,27 +5,29 @@
     <link rel="stylesheet" href="css.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>web1weekカウントダウン</title>
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@aiandrox" />
-    <meta
-      property="og:url"
-      content="https://aiandrox.github.io/web1week_limit/"
-    />
+    <meta property="og:title" content="web1weekカウントダウン" />
     <meta
       name="twitter:description"
       content="web1weekの締め切りまでのタイムリミットを教えてくれます。"
     />
-    <meta property="og:title" content="web1weekカウントダウン" />
+    <meta
+      property="og:image"
+      content="https://aiandrox.github.io/web1week_limit/ogp.png"
+    />
+    <meta
+      property="og:url"
+      content="https://aiandrox.github.io/web1week_limit/"
+    />
   </head>
   <body>
     <div id="app">
-      <div>
-        <div class="center">
-          <div class="web1week">web1week</div>
-          <div id="message">
-            締め切りまで<br />
-            あと<span id="second"></span>秒
-          </div>
+      <div class="center">
+        <div class="web1week">web1week</div>
+        <div id="message">
+          締め切りまで<br />
+          あと<span id="second">？？？？</span>秒
         </div>
         <!-- 締め切り前 -->
         <div id="counter">
@@ -33,9 +35,7 @@
             <div class="form-text">
               <input name="text" id="form-text" maxlength="150" />をします！
             </div>
-            <div class="center">
-              <button type="submit" class="button">Twitterで宣言する</button>
-            </div>
+            <button type="submit" class="button">Twitterで宣言する</button>
           </form>
         </div>
         <!-- 締め切り後 -->
@@ -44,11 +44,9 @@
             締め切りを過ぎてしまいました……。<br />が、まだ間に合うはず！
           </div>
         </div>
-        <div class="center">
-          <a href="https://crieit.net/boards/web1week-202009" target="_blank">
-            提出する
-          </a>
-        </div>
+        <a href="https://crieit.net/boards/web1week-202009" target="_blank">
+          提出する
+        </a>
       </div>
     </div>
 
